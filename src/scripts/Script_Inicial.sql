@@ -1,3 +1,4 @@
+/*Script para criação de categorias e status iniciais */
 INSERT INTO PRODUCT_CATEGORY(CATEGORY_NAME)
 VALUES('cds')
 
