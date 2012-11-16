@@ -1,0 +1,2 @@
+/paradise-lost/cd/icon/ = produto/GetByArtist/artist/categoria/produto
+

@@ -1,0 +1,37 @@
+﻿@using auRant.Visual.Helpers
+@model IEnumerable<auRant.Visual.Models.ProductModel>
+@{
+    ViewBag.Title = "Product Administration";
+    Layout = "~/Areas/Administration/Views/Shared/_Layout.cshtml";
+    WebGrid grid = new WebGrid(
+        source: Model,
+        columnNames: new string[] { "Name", "CategoryName", "StatusName", "Price", "UrlImage", "Manufactor" },
+        rowsPerPage: 2, canPage: true);
+}
+<h2>
+    Index</h2>
+    @helper imgSrc(dynamic itt){
+        <img src="@itt.urlImage" style="width:152px; height:137px" />
+    }
+    @helper publish(dynamic itt)
+    {
+        if (itt.IsDraft)
+        {
+           <a href="/Administration/ProductAdmin/Publish?id=@itt.ID&isDraft=@itt.isDraft">Publish</a>
+        }
+    }
+<div id="administration">
+    @grid.GetHtml(
+    footerStyle: "footer-grid",
+    columns: grid.Columns(
+                grid.Column("Name", "Name", canSort: true),
+                grid.Column("CategoryName", "CategoryName", canSort: true),
+                grid.Column("StatusName", "StatusName", canSort: true),
+                grid.Column("Price", "Price", canSort: true),
+                grid.Column("Manufactor", "Manufactor", canSort: true),
+                grid.Column("Imagem", header: "Imagem",format: @<text>@imgSrc(item) </text>, canSort: false),
+                                                            grid.Column("Editar", header: "Editar", format: (item) => Html.ActionLink("Edit", "Edit", new { id = item.ID, isDraft = item.isDraft }), canSort: false),
+                    grid.Column("Publish",header: "Publish",format:@<text>@publish(item)</text>,canSort:false)))
+                    @Html.ActionLink("New", "Create")
+</div>
+

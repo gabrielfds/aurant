@@ -1,0 +1,17 @@
+﻿@model IEnumerable<IEnumerable<auRant.Visual.Models.ReviewModel>>
+@helper imgSrc(dynamic itt)
+    {
+    <img src="@itt.urlImage" style="width:152px; height:137px" />
+}
+<div class="items">
+    @foreach (var item in Model)
+    {
+        <div class="item">
+            @foreach (var internalItem in item)
+            {
+                <img src="@internalItem.ProductModel.urlImage" />
+                <span>@internalItem.ReviewText</span> 
+            }
+        </div>          
+    }
+</div>

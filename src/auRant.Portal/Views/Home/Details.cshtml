@@ -1,0 +1,18 @@
+﻿@model IEnumerable<auRant.Visual.Models.ProductModel>
+<script language="javascript" type="text/javascript" src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+<script type="text/javascript" src="/Scripts/Details.js"></script>
+<div class="carousel-container-double">
+    <div id="top-container">
+        <!-- root element for scrollable -->
+        <div class="top-scrollable-container">
+            <!-- root element for the items -->
+            @{Html.RenderAction("CarrosselTopo", "Carrossel");}
+            <!-- fim root element for the items -->
+        </div>
+        <div class="bottom-scrollable-container">
+            <!-- root element for the items -->
+            @{Html.RenderAction("CarrosselTopo", "Carrossel");}
+            <!-- fim root element for the items -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+1 - new product from zero => new sketch generated
+2 - sketched is published => concrete product is generated from sketch with status "published" => original sketh is moved to "published"
+3 - new sketch from a product => original product is untouched, a new sketch with status "sketch" is created
+4 - sketch from a product is published => current product and originary sketch with "published" status are moved to "history" status,
+both new product version and sketch being published are moved to "published" status.
+5 - a published version of product is edited => a new sketch from that version is created with the status "sketch" and only the sketch can
+be edited from now one until it is being published, when the product can be edited again creating a new sketch.
+6 - a sketch is edited => the sketch changes are saved, no product is implied
+

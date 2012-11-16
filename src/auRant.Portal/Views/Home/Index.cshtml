@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div id="header">
+    @{Html.RenderAction("Index", "Header");}
+</div>
+<div id="main">
+    <script language="javascript" type="text/javascript" src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+    <script type="text/javascript" src="/Scripts/Home.js"></script>
+    <div class="container">
+        <div id="top-container">
+            <!-- root element for scrollable -->
+            <div class="top-scrollable-container">
+                <!-- root element for the items -->
+                @{Html.RenderAction("CarrosselTopo", "Carrossel");}
+                <!-- fim root element for the items -->
+            </div>
+        </div>
+        <div id="mid-container">
+            <h2>
+                Lastest</h2>
+            <div class="previ">
+            </div>
+            <!-- root element for scrollable -->
+            <div class="mid-scrollable-container">
+                <!-- root element for the items -->
+                 @{Html.RenderAction("CarrosselMiddle", "Carrossel");}
+                <!-- fim root element for the items -->
+            </div>
+            <div class="nexti">
+            </div>
+            <div id="playlist">
+                <h3>
+                    dark traks</h3>
+                <iframe scrolling="no" src="http://rdio-bodytech.herokuapp.com/player" style="height: 315px;
+                    width: 275px; border: none;" id="bodytech-player"></iframe>
+            </div>
+        </div>
+        <div id="botton-container">
+            <h2>
+                Reviews</h2>
+            <div class="prev-btom">
+            </div>
+            <div class="bottom-scrollable-container">
+                @{Html.RenderAction("CarrosselReviews", "Carrossel");}
+            </div>
+            <div class="next-btom">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footer" class="footer-nav">
+    @{Html.RenderAction("Index", "Footer");}
+</div>

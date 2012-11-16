@@ -1,0 +1,9 @@
+﻿@model IEnumerable<auRant.Visual.Models.ProductModel>
+<div class="items">
+    @foreach (var item in Model)
+    {
+        <div class="item">
+            <img src="@item.urlImage" />
+        </div>
+    }
+</div>

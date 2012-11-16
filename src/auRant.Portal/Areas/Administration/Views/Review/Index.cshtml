@@ -1,0 +1,46 @@
+﻿@model IEnumerable<auRant.Visual.Models.ReviewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administration/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Index</h2>
+<p>
+</p>
+<table class="table-admin">
+    <tr>
+        <th>
+            ProductId
+        </th>
+        <th>
+            ReviewText
+        </th>
+        <th>
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="@item.ProductModel.urlImage" width="100" height="90" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReviewText)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID, isDraft = item.IsDraft }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                @if(item.IsDraft)
+                {
+                    <a href="/Administration/Review/Publish?id=@item.ID">Publish</a>
+                }
+            </td>
+        </tr>
+    }
+    <tr>
+        <td colspan="3">
+            @Html.ActionLink("Create New", "Create")
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,11 @@
+﻿@model IEnumerable<auRant.Visual.Models.ProductModel>
+<div id="carousel-container-double">
+    <div id="top-container">
+        <!-- root element for scrollable -->
+        <div class="top-scrollable-container">
+            <!-- root element for the items -->
+            @{Html.RenderAction("CarrosselTopo", "Carrossel");}
+            <!-- fim root element for the items -->
+        </div>
+    </div>
+</div>
