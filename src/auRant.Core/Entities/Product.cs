@@ -7,12 +7,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace auRant.Core.Entities
 {
-    [Table("PRODUCT")]
     /// <summary>
     /// The product class
     /// </summary>
+    [Table("PRODUCT")]
     public class Product : BasePublishableEntity
     {
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public Product()
         {
         }
