@@ -83,7 +83,7 @@ namespace auRant.Visual.Areas.Administration.Controllers
                 this.helperService.SaveFile(FileImage, model.urlFolderImage);
                 model.urlImage = FileImage.FileName;
                 this.publishingService.CreateDraft(model.CreateDraftReviewFromModel(this.productCategoryService.GetByID(model.CategoryId),
-                    this.manufactorService.GetByID(model.ManufactorId), null), null);
+                    this.manufactorService.GetByID(model.ManufactorId), null),null);
 
                 return RedirectToAction("Index");
             }
@@ -114,7 +114,7 @@ namespace auRant.Visual.Areas.Administration.Controllers
             if (ModelState.IsValid)
             {
                 ProductCategory category = this.productCategoryService.GetByID(model.CategoryId);
-                Manufactor manufactor = this.manufactorService.GetByID(model.ManufactorId);
+                Suplier manufactor = this.manufactorService.GetByID(model.ManufactorId);
                 var produto = this.publishingService.GetByID(model.ID);
                 if (!model.IsDraft)
                 {

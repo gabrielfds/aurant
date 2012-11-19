@@ -8,7 +8,7 @@
 @using (Html.BeginForm("Create", "ProductAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.ValidationSummary(true)
-    <div class="form-container">
+    <div id="administration">
         <table>
             <tr>
                 <td>@Html.LabelFor(model => model.Name)
@@ -26,7 +26,6 @@
                     @Html.ValidationMessageFor(model => model.ShortDescription)
                 </td>
             </tr>
-
             <tr>
                 <td>@Html.LabelFor(model => model.FullDescription)
                 </td>
@@ -69,7 +68,11 @@
                     @Html.ValidationMessageFor(model => model.urlImage)
                 </td>
             </tr>
-            <tr><td colspan="2"><input type="submit" value="Create" /></td></tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Create" />
+                </td>
+            </tr>
         </table>
     </div>
 }

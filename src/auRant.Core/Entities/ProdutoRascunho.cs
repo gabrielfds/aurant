@@ -1,76 +1,79 @@
-﻿using auRant.Core.Entities.Base;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using auRant.Core.Entities.Base;
 using System.ComponentModel.DataAnnotations;
 
 namespace auRant.Core.Entities
 {
-    [Table("DRAFT_PRODUCT")]
-    public class DraftProduct : BasePublishableEntity, IPublishable
+    [Table("PRODUTO")]
+    public class ProdutoRascunho : BasePublishableEntity, IPublishable
     {
-        public DraftProduct()
+        public ProdutoRascunho()
         {
 
         }
-        [Column("DPRO_NAME")]
+        [Column("NM_PROD")]
         /// <summary>
-        /// The product name
+        /// O nome do produto
         /// </summary>
         public string Name { get; set; }
 
+        [Column("ID_CATE")]
         /// <summary>
-        /// The product category
+        /// A categoria do produto
         /// </summary>
-        [Column("PRCA_ID_CATEGORY")]
-        public virtual ProductCategory Category { get; set; }
-       
-        /// <summary>
-        /// The product this draft was made from
-        /// </summary>
-        [Column("PROD_ID_PRODUCT")]
-        public virtual Product OriginalProduct { get; set; }
+        public virtual ProductCategory CategoriaDoProduto { get; set; }
 
         /// <summary>
-        /// The product price
+        /// O id do produto que originou este rascunho
         /// </summary>
-        [Column("DPRO_PRICE")]
+        [Column("ID_PROD")]
+        public virtual Produto ProdutoOriginal { get; set; }
+
+        /// <summary>
+        /// O preço do produto
+        /// </summary>
+        [Column("PRECO_PROD")]
         public decimal Price { get; set; }
 
-
         /// <summary>
-        /// The product image url
+        /// a imagem do produto
         /// </summary>
-        [Column("DPRO_IMAGE_URL")]
+        [Column("IMAGE_PROD")]
         public string urlImage { get; set; }
 
-
-        [Column("SUPL_ID_SUPLIER")]
         /// <summary>
-        /// The suplier's id that owns this product
+        /// O id do fornecedor do produto
         /// </summary>
-        public virtual Suplier Suplier { get; set; }
+        [Column("ID_FORN")]
+        /// <summary>
+        /// The artist's that owns this product
+        /// </summary>
+        public virtual Fornecedor Fornecedor { get; set; }
 
         /// <summary>
-        /// The product short description
+        /// Uma breve descrição do produto
         /// </summary>
-        [Column("DPRO_DS_SHORT_DESCRIPTION")]
+        [Column("DS_CURTA_PROD")]
         public string ShortDescription { get; set; }
 
         /// <summary>
-        /// The product full description
+        /// Uma descrição mais completa do produto
         /// </summary>
-        [Column("DPRO_DS_FULL_DESCRIPTION")]
+        [Column("DS_LONGA_PROD")]
         public string FullDescription { get; set; }
-
-
 
         public void Publish(BasePublishableEntity draft, PublicationStatus status, Base.BaseEntity originalEntity = null)
         {
-            if (((DraftProduct)draft).OriginalProduct == null)
+            if (((ProdutoRascunho)draft).ProdutoOriginal == null)
             {
-                ((DraftProduct)draft).OriginalProduct = new Product()
+                ((ProdutoRascunho)draft).ProdutoOriginal = new Produto()
                 {
-                     Category = this.Category,
+                     Category = this.CategoriaDoProduto,
                       FullDescription = this.FullDescription,
-                        Manufactor = this.Suplier,
+                       Manufactor = this.Fornecedor,
                         Name = this.Name, 
                          Price = this.Price,
                           ShortDescription = this.ShortDescription,
@@ -80,11 +83,11 @@ namespace auRant.Core.Entities
             }
             else
             {
-                Product original = (Product)originalEntity;
+                Produto original = (Produto)originalEntity;
                 original.PublicationStatus = new Entities.PublicationStatus();
-                original.Manufactor = this.Suplier;
+                original.Manufactor = this.Fornecedor;
                 original.FullDescription = this.FullDescription;
-                original.Category = this.Category;
+                original.Category = this.CategoriaDoProduto;
                 original.Name = this.Name;
                 original.Price = this.Price;
                 original.ShortDescription = this.ShortDescription;
@@ -97,7 +100,7 @@ namespace auRant.Core.Entities
         {
             if (original != null)
             {
-                this.OriginalProduct = (Product)original;
+                this.ProdutoOriginal = (Produto)original;
             }
         }
     }

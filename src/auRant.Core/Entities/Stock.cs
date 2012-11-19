@@ -12,7 +12,7 @@ namespace auRant.Core.Entities
         /// <summary>
         /// The product in stock
         /// </summary>
-        [Column("PROD_SQ_PRODUTO")]
+        [Column("PROD_ID_PRODUTO")]
         public Product Product { get; set; }
 
         /// <summary>

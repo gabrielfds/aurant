@@ -8,7 +8,7 @@ namespace auRant.Core.Entities.Base
 {
     public class BasePublishableEntity:BaseEntity
     {
-        [Column("PBST_SQ_PUBLICATION_STATUS")]
+        [Column("PBST_ID_PUBLICATION_STATUS")]
         public PublicationStatus PublicationStatus { get; set; }
     }
 }

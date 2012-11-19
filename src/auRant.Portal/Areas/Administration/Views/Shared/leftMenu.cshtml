@@ -1,0 +1,16 @@
+﻿<div id="admin-logo">
+    <div>
+        <img src="../../../../Content/image/logo_aurant.jpg" /></div>
+    <div>
+        <h2>
+            Administration</h2>
+    </div>
+</div>
+<div id="admin-menu">
+    <ul>
+        <li>@Html.ActionLink("table", "Index", new { area = "Administration", controller = "Table" })</li>
+        <li>@Html.ActionLink("PRODUCT", "Index", new { area = "Administration", controller = "ProductAdmin" })</li>
+        <li>@Html.ActionLink("MANUFACTOR", "Index", new { controller = "Manufactor" })</li>
+        <li>@Html.ActionLink("REVIEWS", "Index", new { controller = "Review" })</li>
+    </ul>
+</div>

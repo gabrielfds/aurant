@@ -9,7 +9,7 @@ using auRant.Core.DataBase.Repositories;
 
 namespace auRant.Services
 {
-    public class ManufactorService:BaseService<Manufactor>
+    public class ManufactorService:BaseService<Suplier>
     {
         ManufactorRepository manufactorRepository = null;
         public ManufactorService(DatabaseContext context)
@@ -18,7 +18,7 @@ namespace auRant.Services
             this.manufactorRepository = new ManufactorRepository(context);
         }
 
-        public List<Manufactor> GetAll()
+        public List<Suplier> GetAll()
         {
             return this.manufactorRepository.GetAll();
         }

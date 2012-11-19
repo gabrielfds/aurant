@@ -8,7 +8,7 @@
     <ProjectGuid>{50BC88A2-8093-4C12-9D1A-C245AAD6929E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Portal.Core</RootNamespace>
+    <RootNamespace>auRant.Core</RootNamespace>
     <AssemblyName>Portal.Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -59,10 +59,12 @@
     <Compile Include="DataBase\DatabaseContext.cs" />
     <Compile Include="DataBase\Repositories\PublicationStatusRepository.cs" />
     <Compile Include="DataBase\Repositories\ReviewRepository.cs" />
+    <Compile Include="DataBase\Repositories\TableRepository.cs" />
     <Compile Include="Entities\DraftProduct.cs" />
     <Compile Include="Entities\DraftReview.cs" />
+    <Compile Include="Entities\DraftTable.cs" />
     <Compile Include="Entities\IPublishable.cs" />
-    <Compile Include="Entities\Manufactor.cs" />
+    <Compile Include="Entities\Suplier.cs" />
     <Compile Include="Entities\Base\BaseEntity.cs" />
     <Compile Include="Entities\Base\BasePublishableEntity.cs" />
     <Compile Include="Entities\Base\IEntityCopier.cs" />
@@ -73,6 +75,10 @@
     <Compile Include="Entities\PublicationStatus.cs" />
     <Compile Include="Entities\Review.cs" />
     <Compile Include="Entities\Stock.cs" />
+    <Compile Include="Entities\SuplierAddress.cs" />
+    <Compile Include="Entities\SuplierEmail.cs" />
+    <Compile Include="Entities\SuplierTelephone.cs" />
+    <Compile Include="Entities\Table.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

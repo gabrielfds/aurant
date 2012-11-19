@@ -27,15 +27,15 @@ namespace auRant.Visual.Areas.Administration.Models
         public string Name { get; set; }
 
 
-        public ManufactorModel(Manufactor manufactor)
+        public ManufactorModel(Suplier manufactor)
         {
             this.ID = manufactor.ID;
             this.Name = manufactor.Name;
         }
 
-        public Manufactor CreateManufactorFromModel()
+        public Suplier CreateManufactorFromModel()
         {
-            return new Manufactor(){
+            return new Suplier(){
                 Name = this.Name
             };
         }

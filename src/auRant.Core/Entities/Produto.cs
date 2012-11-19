@@ -1,4 +1,8 @@
-﻿using auRant.Core.Entities.Base;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using auRant.Core.Entities.Base;
 using System.ComponentModel.DataAnnotations;
 
 namespace auRant.Core.Entities
@@ -7,12 +11,12 @@ namespace auRant.Core.Entities
     /// The product class
     /// </summary>
     [Table("PRODUCT")]
-    public class Product : BasePublishableEntity
+    public class Produto : BasePublishableEntity
     {
         /// <summary>
         /// Default constructor
         /// </summary>
-        public Product()
+        public Produto()
         {
         }
 
@@ -25,7 +29,7 @@ namespace auRant.Core.Entities
         /// <summary>
         /// The product category
         /// </summary>
-        [Column("PRCA_ID_CATEGORY")]
+        [Column("PRCA_SQ_CATEGORY")]
         public virtual ProductCategory Category { get; set; }
        
         /// <summary>
@@ -43,8 +47,8 @@ namespace auRant.Core.Entities
         /// <summary>
         /// The artist's that owns this product
         /// </summary>
-        [Column("MANU_ID_MANUFACTOR")]
-        public virtual Suplier Manufactor { get; set; }
+        [Column("MANU_SQ_MANUFACTOR")]
+        public virtual Fornecedor Manufactor { get; set; }
 
         /// <summary>
         /// The product short description

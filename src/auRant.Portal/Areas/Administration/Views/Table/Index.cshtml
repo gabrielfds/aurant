@@ -1,0 +1,35 @@
+﻿@model IEnumerable<auRant.Visual.Models.TableModel>
+@{
+    ViewBag.Title = "Table Administration";
+    Layout = "~/Areas/Administration/Views/Shared/_Layout.cshtml";
+    WebGrid grid = new WebGrid(
+        source: Model,
+        columnNames: new string[] { "Name", "Capacity", "TableNumber"},
+        rowsPerPage: 2, canPage: true);
+}
+<div id="administration">
+    @helper publish(dynamic itt)
+    {
+        if (itt.IsDraft)
+        {
+           <a href="/Administration/Table/Publish?id=@itt.ID&isDraft=@itt.isDraft"><img title="publish" alt="publish" src="../../../../Content/image/Admim/checkmark.png" /></a>
+        }
+    }
+    @helper delete(dynamic item){
+        <a href="/Administration/Table/Delete?id=@item.ID&isDraft=@item.isDraft"><img title="delete" alt="delete" src="../../../../Content/image/Admim/delete.png" /></a>
+    }
+    @helper edit(dynamic item){
+        <a href="/Administration/Table/Edit?id=@item.ID&isDraft=@item.isDraft"><img title="edit" alt="edit" src="../../../../Content/image/Admim/edit.png" /></a>
+    }
+    
+    @grid.GetHtml(
+    footerStyle: "footer-grid",
+    columns: grid.Columns(
+                grid.Column("Name", "Name", canSort: true),
+                grid.Column("Capacity", "Capacity", canSort: true),
+                grid.Column("TableNumber", "TableNumber", canSort: true),
+                grid.Column("Editar", header: "", format: @<text>@edit(item)</text>, canSort: false),
+                grid.Column("Publish", header: "", format: @<text>@publish(item)</text>, canSort: false),
+                grid.Column("Delete", header: "", format: @<text>@delete(item)</text>, canSort: false)))
+    @Html.ActionLink("New", "Create")
+</div>

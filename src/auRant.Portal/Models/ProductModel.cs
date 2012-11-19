@@ -2,9 +2,10 @@
 using auRant.Core;
 using auRant.Core.Entities;
 using System.Web.Mvc;
+using auRant.Visual.Areas.Administration.Models;
 namespace auRant.Visual.Models
 {
-    public class ProductModel
+    public class ProductModel : BaseModel
     {
         private DraftProduct r;
         private DraftProduct draftProduct;
@@ -76,7 +77,7 @@ namespace auRant.Visual.Models
         public ProductCategory Category { get; set; }
 
 
-        public Manufactor Manufactor { get; set; }
+        public Suplier Manufactor { get; set; }
 
 
         public ProductModel()
@@ -110,8 +111,8 @@ namespace auRant.Visual.Models
             CategoryId = draft.Category.ID;
             CategoryName = draft.Category.Name;
             FullDescription = draft.FullDescription;
-            ManufactorName = draft.Manufactor.Name;
-            ManufactorId = draft.Manufactor.ID;
+            ManufactorName = draft.Suplier.Name;
+            ManufactorId = draft.Suplier.ID;
             Name = draft.Name;
             Price = draft.Price;
             ShortDescription = draft.ShortDescription;
@@ -131,8 +132,8 @@ namespace auRant.Visual.Models
             this.CategoryName = Draft.Category.Name;
             this.StatusId = Draft.PublicationStatus.ID;
             this.StatusName = Draft.PublicationStatus.Name;
-            this.ManufactorId = Draft.Manufactor.ID;
-            this.ManufactorName = Draft.Manufactor.Name;
+            this.ManufactorId = Draft.Suplier.ID;
+            this.ManufactorName = Draft.Suplier.Name;
             this.urlImage = string.Concat(urlFolderImage, Draft.urlImage);
             this.ShortDescription = Draft.ShortDescription;
             this.FullDescription = Draft.FullDescription;
@@ -143,7 +144,7 @@ namespace auRant.Visual.Models
         /// Transforms itself into a Product entity
         /// </summary>
         /// <returns></returns>
-        public auRant.Core.Entities.Product CreateProduct(string urlImage, ProductCategory category, PublicationStatus productStatus, Manufactor manufactor)
+        public auRant.Core.Entities.Product CreateProduct(string urlImage, ProductCategory category, PublicationStatus productStatus, Suplier manufactor)
         {
             return new auRant.Core.Entities.Product()
             {
@@ -163,7 +164,7 @@ namespace auRant.Visual.Models
         /// Update a product's fields with this fields values
         /// </summary>
         /// <returns></returns>
-        public void UpdateProduct(auRant.Core.Entities.Product produtoEditavel, ProductCategory category, PublicationStatus productStatus, Manufactor manufactor)
+        public void UpdateProduct(auRant.Core.Entities.Product produtoEditavel, ProductCategory category, PublicationStatus productStatus, Suplier manufactor)
         {
             produtoEditavel.Name = this.Name;
             produtoEditavel.Category = category;
@@ -191,19 +192,17 @@ namespace auRant.Visual.Models
         public string RequiredImageMessage { get { return "The image for the product is required"; } }
 
 
-        public string urlFolderImage { get { return string.Concat(Constants.FILE_FOLDER_BASE, @"/Product/"); } }
-
-        public bool IsDraft { get; set; }
+        public string urlFolderImage { get { return string.Concat(Constants.FILE_FOLDER_BASE, @"/Product/"); } }        
 
         public int IdOriginal { get; set; }
 
-        public DraftProduct CreateDraftReviewFromModel(ProductCategory category, Manufactor manufactor, Product origin)
+        public DraftProduct CreateDraftReviewFromModel(ProductCategory category, Suplier suplier, Product origin)
         {
             return new DraftProduct()
             {
                 Category = category,
                 FullDescription  = this.FullDescription,
-                Manufactor = manufactor,
+                Suplier = suplier,
                 Name = this.Name,
                 Price = this.Price,
                 ShortDescription = this.ShortDescription,
@@ -212,11 +211,11 @@ namespace auRant.Visual.Models
             };
         }
 
-        public DraftProduct PopularDraftReviewFromModel(DraftProduct draft, ProductCategory category, Manufactor manufactor, Product origin)
+        public DraftProduct PopularDraftReviewFromModel(DraftProduct draft, ProductCategory category, Suplier manufactor, Product origin)
         {
             draft.OriginalProduct = origin;
             draft.Category = category;
-            draft.Manufactor = manufactor;
+            draft.Suplier = manufactor;
             draft.Name = this.Name;
             draft.Price = this.Price;
             draft.ShortDescription = this.ShortDescription;

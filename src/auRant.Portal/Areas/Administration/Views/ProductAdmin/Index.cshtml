@@ -8,8 +8,9 @@
         columnNames: new string[] { "Name", "CategoryName", "StatusName", "Price", "UrlImage", "Manufactor" },
         rowsPerPage: 2, canPage: true);
 }
-<h2>
-    Index</h2>
+
+<div id="administration">
+
     @helper imgSrc(dynamic itt){
         <img src="@itt.urlImage" style="width:152px; height:137px" />
     }
@@ -20,7 +21,7 @@
            <a href="/Administration/ProductAdmin/Publish?id=@itt.ID&isDraft=@itt.isDraft">Publish</a>
         }
     }
-<div id="administration">
+
     @grid.GetHtml(
     footerStyle: "footer-grid",
     columns: grid.Columns(

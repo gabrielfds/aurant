@@ -8,7 +8,7 @@
     <ProjectGuid>{6B09DA1B-8B35-4C2A-B271-3AE42F6CA783}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Portal.Services</RootNamespace>
+    <RootNamespace>auRant.Services</RootNamespace>
     <AssemblyName>Portal.Services</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

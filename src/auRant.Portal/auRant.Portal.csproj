@@ -10,7 +10,7 @@
     <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Portal.Visual</RootNamespace>
+    <RootNamespace>auRant.Visual</RootNamespace>
     <AssemblyName>Portal.Visibility</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
@@ -70,7 +70,10 @@
     <Compile Include="Areas\Administration\Controllers\ManufactorController.cs" />
     <Compile Include="Areas\Administration\Controllers\ProductAdminController.cs" />
     <Compile Include="Areas\Administration\Controllers\ReviewController.cs" />
+    <Compile Include="Areas\Administration\Controllers\TableController.cs" />
+    <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Areas\Administration\Models\ManufactorModel.cs" />
+    <Compile Include="Models\TableModel.cs" />
     <Compile Include="Areas\Product\Controllers\ProductController.cs" />
     <Compile Include="Areas\Product\Models\Product.cs" />
     <Compile Include="Areas\Product\ProductAreaRegistration.cs" />
@@ -91,6 +94,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\AdminSite.css" />
+    <Content Include="Content\image\Admim\checkmark.png" />
+    <Content Include="Content\image\Admim\delete.png" />
+    <Content Include="Content\image\Admim\edit.png" />
     <Content Include="Content\image\Benediction_Transcend.jpg" />
     <Content Include="Content\image\blood-kissess.jpeg" />
     <Content Include="Content\image\br_next.png" />
@@ -98,6 +104,7 @@
     <Content Include="Content\image\deeper-down-my-dying-bride.jpg" />
     <Content Include="Content\image\Draconian-times.jpeg" />
     <Content Include="Content\image\logo-tstr.jpg" />
+    <Content Include="Content\image\logo_aurant.jpg" />
     <Content Include="Content\image\mater-of-puppets.jpeg" />
     <Content Include="Content\image\megadeth-countdown_to_extinction.jpg" />
     <Content Include="Content\image\painkiller-judas-priest.jpg" />
@@ -233,6 +240,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Administration\Views\Shared\leftMenu.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Administration\Views\Table\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Administration\Views\Table\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Administration\Views\Table\Edit.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
