@@ -16,18 +16,18 @@ namespace auRant.Visual.Areas.Administration.Controllers
         PublishingService<auRant.Core.Entities.Product, DraftProduct, ProductRepository> publishingService = null;
         ProductCategoryService productCategoryService = null;
         ProductStatusService productStatusService = null;
-        ManufactorService manufactorService = null;
+        SupplierService supplierService = null;
         HelperService helperService = null;
         SelectList categories = null;
         SelectList productStatus = null;
-        SelectList manufactor = null;
+        SelectList supplier = null;
 
         public ProductAdminController()
         {
             this.publishingService = new PublishingService<auRant.Core.Entities.Product, DraftProduct, ProductRepository>(ContextFactory.GetContext(System.Web.HttpContext.Current));
             this.productCategoryService = new ProductCategoryService(ContextFactory.GetContext(System.Web.HttpContext.Current));
             this.productStatusService = new ProductStatusService(ContextFactory.GetContext(System.Web.HttpContext.Current));
-            this.manufactorService = new ManufactorService(ContextFactory.GetContext(System.Web.HttpContext.Current));
+            this.supplierService = new SupplierService(ContextFactory.GetContext(System.Web.HttpContext.Current));
             this.helperService = new HelperService();
         }
 
@@ -64,11 +64,11 @@ namespace auRant.Visual.Areas.Administration.Controllers
         {
             categories = new SelectList(this.productCategoryService.GetAll(), "ID", "Name");
             productStatus = new SelectList(this.productStatusService.GetAll(), "ID", "Name");
-            manufactor = new SelectList(this.manufactorService.GetAll(), "ID", "Name");
+            supplier = new SelectList(this.supplierService.GetAll(), "ID", "Name");
 
             ViewBag.Categories = categories;
             ViewBag.ProductStatus = productStatus;
-            ViewBag.Manufactor = manufactor;
+            ViewBag.Supplier = supplier;
         }
 
         [HttpPost]
@@ -83,7 +83,7 @@ namespace auRant.Visual.Areas.Administration.Controllers
                 this.helperService.SaveFile(FileImage, model.urlFolderImage);
                 model.urlImage = FileImage.FileName;
                 this.publishingService.CreateDraft(model.CreateDraftReviewFromModel(this.productCategoryService.GetByID(model.CategoryId),
-                    this.manufactorService.GetByID(model.ManufactorId), null),null);
+                    this.supplierService.GetByID(model.supplierId), null),null);
 
                 return RedirectToAction("Index");
             }
@@ -114,7 +114,7 @@ namespace auRant.Visual.Areas.Administration.Controllers
             if (ModelState.IsValid)
             {
                 ProductCategory category = this.productCategoryService.GetByID(model.CategoryId);
-                Suplier manufactor = this.manufactorService.GetByID(model.ManufactorId);
+                Supplier supplier = this.supplierService.GetByID(model.supplierId);
                 var produto = this.publishingService.GetByID(model.ID);
                 if (!model.IsDraft)
                 {
@@ -123,7 +123,7 @@ namespace auRant.Visual.Areas.Administration.Controllers
                     else
                         model.urlImage = ImageFile.FileName;
 
-                    DraftProduct d = model.CreateDraftReviewFromModel(category, manufactor, produto);
+                    DraftProduct d = model.CreateDraftReviewFromModel(category, supplier, produto);
                     this.publishingService.CreateDraft(d, produto);
                 }
                 else
@@ -134,7 +134,7 @@ namespace auRant.Visual.Areas.Administration.Controllers
                         model.urlImage = ImageFile.FileName;
 
                     var draft = this.publishingService.GetDraftById(model.ID);
-                    this.publishingService.UpdateDraft(model.PopularDraftReviewFromModel(draft, category, manufactor, draft.OriginalProduct)); ;
+                    this.publishingService.UpdateDraft(model.PopularDraftReviewFromModel(draft, category, supplier, draft.OriginalProduct)); ;
                 }
             }
             SetarViewBags();

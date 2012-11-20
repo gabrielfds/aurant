@@ -3,8 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace auRant.Core.Entities
 {
-    [Table("MANUFACTOR")]
-    public class Suplier: BaseEntity
+    [Table("SUPPLIER")]
+    public class Supplier: BaseEntity
     {
         /// <summary>
         /// The artist's name

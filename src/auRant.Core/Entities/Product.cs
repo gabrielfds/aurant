@@ -20,13 +20,7 @@ namespace auRant.Core.Entities
         /// The product name
         /// </summary>
         [Column("PROD_NAME")]     
-        public string Name { get; set; }
-
-        /// <summary>
-        /// The product category
-        /// </summary>
-        [Column("PRCA_ID_CATEGORY")]
-        public virtual ProductCategory Category { get; set; }
+        public string Name { get; set; }       
        
         /// <summary>
         /// The product price
@@ -40,11 +34,7 @@ namespace auRant.Core.Entities
         [Column("PROD_IMAGE_URL")]
         public string urlImage { get; set; }
 
-        /// <summary>
-        /// The artist's that owns this product
-        /// </summary>
-        [Column("MANU_ID_MANUFACTOR")]
-        public virtual Suplier Manufactor { get; set; }
+      
 
         /// <summary>
         /// The product short description
@@ -57,6 +47,16 @@ namespace auRant.Core.Entities
         /// </summary>
         [Column("PROD_DS_FULL_DESCRIPTION")]
         public string FullDescription { get; set; }
+
+        /// <summary>
+        /// The product category
+        /// </summary>
+        public virtual ProductCategory Category { get; set; }
+
+        /// <summary>
+        /// The artist's that owns this product
+        /// </summary>
+        public virtual Supplier Supplier { get; set; }
 
     }
 }

@@ -7,13 +7,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace auRant.Core.Entities
 {
-    public class SuplierAddress: BaseEntity
+    [Table("SUPLIER_ADDRESS")]
+    public class SupllierAddress: BaseEntity
     {
         /// <summary>
         /// the suplier's id
         /// </summary>
-        [Column("SUPL_ID_SUPLIER")]
-        public virtual Suplier Suplier { get; set; }
+        public virtual Supplier Supplier { get; set; }
 
         /// <summary>
         /// the address kind (rua, avenida)

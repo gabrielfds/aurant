@@ -13,7 +13,7 @@ namespace auRant.Core.Entities
         /// the suplier's id
         /// </summary>
         [Column("SUPL_ID_SUPLIER")]
-        public virtual Suplier Suplier { get; set; }
+        public virtual Supplier Supplier { get; set; }
 
         [Column("SUEM_DS_EMAIL")]
         public string EmailAddress { get; set; }

@@ -7,16 +7,16 @@ using auRant.Core.DataBase.Base;
 
 namespace auRant.Core.DataBase.Repositories
 {
-    public class ManufactorRepository:BaseRepository<Suplier>
+    public class supplierRepository:BaseRepository<Supplier>
     {
-        public ManufactorRepository(DatabaseContext context)
+        public supplierRepository(DatabaseContext context)
             :base(context)
         {
         }
 
-        public List<Suplier> GetAll()
+        public List<Supplier> GetAll()
         {
-            return this.context.Manufactors.ToList();
+            return this.context.Supliers.ToList();
         }
     }
 }

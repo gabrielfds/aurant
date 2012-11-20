@@ -9,18 +9,18 @@ using auRant.Visual.Areas.Administration.Models;
 
 namespace auRant.Visual.Areas.Administration.Controllers
 {
-    public class ManufactorController : Controller
+    public class supplierController : Controller
     {
-        ManufactorService manufactorService = null;
+        SupplierService supplierService = null;
 
-        public ManufactorController()
+        public supplierController()
         {
-            this.manufactorService = new ManufactorService(ContextFactory.GetContext(System.Web.HttpContext.Current));
+            this.supplierService = new SupplierService(ContextFactory.GetContext(System.Web.HttpContext.Current));
         }
         public ActionResult Index()
         {
-            var model = new List<ManufactorModel>();
-            this.manufactorService.GetAll().ForEach(m => model.Add(new ManufactorModel(m)));
+            var model = new List<SupplierModel>();
+            this.supplierService.GetAll().ForEach(m => model.Add(new SupplierModel(m)));
             return View(model);
         }
 
@@ -30,11 +30,11 @@ namespace auRant.Visual.Areas.Administration.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(ManufactorModel model)
+        public ActionResult Create(SupplierModel model)
         {
             if (ModelState.IsValid)
             {
-                this.manufactorService.Create(model.CreateManufactorFromModel());
+                this.supplierService.Create(model.CreatesupplierFromModel());
                 return RedirectToAction("Index");
             }
             return View();
@@ -46,13 +46,13 @@ namespace auRant.Visual.Areas.Administration.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(ManufactorModel model)
+        public ActionResult Edit(SupplierModel model)
         {
             if (ModelState.IsValid)
             {
-                var manufactor = this.manufactorService.GetByID(model.ID);
-                manufactor.Name = model.Name;
-                this.manufactorService.Save();
+                var supplier = this.supplierService.GetByID(model.ID);
+                supplier.Name = model.Name;
+                this.supplierService.Save();
                 return RedirectToAction("Index");
             }
             return View();

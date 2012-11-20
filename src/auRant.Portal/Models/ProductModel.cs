@@ -52,14 +52,14 @@ namespace auRant.Visual.Models
         public string urlImage { get; set; }
 
         /// <summary>
-        /// The manufactor's Id for this product
+        /// The supplier's Id for this product
         /// </summary>
-        public int ManufactorId { get; set; }
+        public int supplierId { get; set; }
 
         /// <summary>
-        /// The manufactor's description for this product
+        /// The supplier's description for this product
         /// </summary>
-        public string ManufactorName { get; set; }
+        public string supplierName { get; set; }
 
         /// <summary>
         /// A short description for the product
@@ -77,7 +77,7 @@ namespace auRant.Visual.Models
         public ProductCategory Category { get; set; }
 
 
-        public Suplier Manufactor { get; set; }
+        public Supplier Supplier { get; set; }
 
 
         public ProductModel()
@@ -98,8 +98,8 @@ namespace auRant.Visual.Models
             this.CategoryName = product.Category.Name;
             this.StatusId = product.PublicationStatus.ID;
             this.StatusName = product.PublicationStatus.Name;
-            this.ManufactorId = product.Manufactor.ID;
-            this.ManufactorName = product.Manufactor.Name;
+            this.supplierId = product.Supplier.ID;
+            this.supplierName = product.Supplier.Name;
             this.urlImage = string.Concat(urlFolderImage, product.urlImage);
             this.ShortDescription = product.ShortDescription;
             this.FullDescription = product.FullDescription;
@@ -111,8 +111,8 @@ namespace auRant.Visual.Models
             CategoryId = draft.Category.ID;
             CategoryName = draft.Category.Name;
             FullDescription = draft.FullDescription;
-            ManufactorName = draft.Suplier.Name;
-            ManufactorId = draft.Suplier.ID;
+            supplierName = draft.Supplier.Name;
+            supplierId = draft.Supplier.ID;
             Name = draft.Name;
             Price = draft.Price;
             ShortDescription = draft.ShortDescription;
@@ -132,8 +132,8 @@ namespace auRant.Visual.Models
             this.CategoryName = Draft.Category.Name;
             this.StatusId = Draft.PublicationStatus.ID;
             this.StatusName = Draft.PublicationStatus.Name;
-            this.ManufactorId = Draft.Suplier.ID;
-            this.ManufactorName = Draft.Suplier.Name;
+            this.supplierId = Draft.Supplier.ID;
+            this.supplierName = Draft.Supplier.Name;
             this.urlImage = string.Concat(urlFolderImage, Draft.urlImage);
             this.ShortDescription = Draft.ShortDescription;
             this.FullDescription = Draft.FullDescription;
@@ -144,7 +144,7 @@ namespace auRant.Visual.Models
         /// Transforms itself into a Product entity
         /// </summary>
         /// <returns></returns>
-        public auRant.Core.Entities.Product CreateProduct(string urlImage, ProductCategory category, PublicationStatus productStatus, Suplier manufactor)
+        public auRant.Core.Entities.Product CreateProduct(string urlImage, ProductCategory category, PublicationStatus productStatus, Supplier supplier)
         {
             return new auRant.Core.Entities.Product()
             {
@@ -152,7 +152,7 @@ namespace auRant.Visual.Models
                 Category = category,
                 PublicationStatus = productStatus,
                 Price = this.Price,
-                Manufactor = manufactor,
+                Supplier = supplier,
                 urlImage = urlImage,
                 ShortDescription = this.ShortDescription,
                 FullDescription = this.FullDescription
@@ -164,13 +164,13 @@ namespace auRant.Visual.Models
         /// Update a product's fields with this fields values
         /// </summary>
         /// <returns></returns>
-        public void UpdateProduct(auRant.Core.Entities.Product produtoEditavel, ProductCategory category, PublicationStatus productStatus, Suplier manufactor)
+        public void UpdateProduct(auRant.Core.Entities.Product produtoEditavel, ProductCategory category, PublicationStatus productStatus, Supplier supplier)
         {
             produtoEditavel.Name = this.Name;
             produtoEditavel.Category = category;
             produtoEditavel.PublicationStatus = productStatus;
             produtoEditavel.Price = this.Price;
-            produtoEditavel.Manufactor = manufactor;
+            produtoEditavel.Supplier = supplier;
             produtoEditavel.urlImage = this.urlImage;
             produtoEditavel.ShortDescription = this.ShortDescription;
             produtoEditavel.FullDescription = this.FullDescription;
@@ -196,13 +196,13 @@ namespace auRant.Visual.Models
 
         public int IdOriginal { get; set; }
 
-        public DraftProduct CreateDraftReviewFromModel(ProductCategory category, Suplier suplier, Product origin)
+        public DraftProduct CreateDraftReviewFromModel(ProductCategory category, Supplier suplier, Product origin)
         {
             return new DraftProduct()
             {
                 Category = category,
                 FullDescription  = this.FullDescription,
-                Suplier = suplier,
+                Supplier = suplier,
                 Name = this.Name,
                 Price = this.Price,
                 ShortDescription = this.ShortDescription,
@@ -211,11 +211,11 @@ namespace auRant.Visual.Models
             };
         }
 
-        public DraftProduct PopularDraftReviewFromModel(DraftProduct draft, ProductCategory category, Suplier manufactor, Product origin)
+        public DraftProduct PopularDraftReviewFromModel(DraftProduct draft, ProductCategory category, Supplier supplier, Product origin)
         {
             draft.OriginalProduct = origin;
             draft.Category = category;
-            draft.Suplier = manufactor;
+            draft.Supplier = supplier;
             draft.Name = this.Name;
             draft.Price = this.Price;
             draft.ShortDescription = this.ShortDescription;

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.Entity;
 using auRant.Core.Entities;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace auRant.Core.DataBase
 {
@@ -20,7 +21,7 @@ namespace auRant.Core.DataBase
 
         public DbSet<PublicationStatus> PulicationStatus { get; set; }
         public DbSet<ProductCategory> Categories { get; set; }
-        public DbSet<Suplier> Manufactors { get; set; }
+        public DbSet<Supplier> Supliers { get; set; }
         public DbSet<Parameter> Parmeters { get; set; }
         
         public DatabaseContext()
@@ -31,9 +32,10 @@ namespace auRant.Core.DataBase
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
-            //Manufactor
-            modelBuilder.Entity<Suplier>().Property(p => p.ID).HasColumnName("SUPL_ID_MANUFACTOR");
+            //Supplier
+            modelBuilder.Entity<Supplier>().Property(p => p.ID).HasColumnName("SUPL_ID_SUPPLIER");
 
             //category
             modelBuilder.Entity<ProductCategory>().Property(p => p.ID).HasColumnName("PRCA_ID_CATEGORY");
@@ -43,24 +45,42 @@ namespace auRant.Core.DataBase
 
             //Product
             modelBuilder.Entity<Product>().Property(p => p.ID).HasColumnName("PROD_ID_PRODUCT");
-            modelBuilder.Entity<Product>().HasRequired(p => p.Manufactor).WithMany().Map(m => m.MapKey("SUPL_ID_MANUFACTOR"));
-            modelBuilder.Entity<Product>().HasRequired(p => p.PublicationStatus).WithMany().Map(m => m.MapKey("PBST_ID_PUBLICATION_STATUS"));
-            modelBuilder.Entity<Product>().HasRequired(p => p.Category).WithMany().Map(m => m.MapKey("PRCA_ID_CATEGORY"));
+            modelBuilder.Entity<Product>().HasRequired(p => p.Supplier).WithMany().Map(m => m.MapKey("SUPL_ID_supplier"));
+            modelBuilder.Entity<Product>().HasOptional(p => p.PublicationStatus).WithMany().Map(m => m.MapKey("PBST_ID_PUBLICATION_STATUS"));
+            modelBuilder.Entity<Product>().HasRequired(p => p.Category).WithMany().Map(m => m.MapKey("PRCA_ID_CATEGORY")); 
+     
+             //Product
+            modelBuilder.Entity<DraftProduct>().Property(p => p.ID).HasColumnName("DPRO_ID_DRAFT_PRODUCT");
+            modelBuilder.Entity<DraftProduct>().HasOptional(p => p.OriginalProduct).WithMany().Map(m=>m.MapKey("PROD_ID_PRODUCT"));
+            modelBuilder.Entity<DraftProduct>().HasRequired(p => p.Supplier).WithMany().Map(m => m.MapKey("SUPL_ID_SUPLIER"));
+            modelBuilder.Entity<DraftProduct>().HasOptional(p => p.PublicationStatus).WithMany().Map(m => m.MapKey("PBST_ID_PUBLICATION_STATUS"));
+            modelBuilder.Entity<DraftProduct>().HasRequired(p => p.Category).WithMany().Map(m => m.MapKey("PRCA_ID_CATEGORY"));  
+      
 
             //Reviews
             modelBuilder.Entity<Review>().Property(p => p.ID).HasColumnName("REVI_ID_REVIEW");
             modelBuilder.Entity<Review>().HasRequired(p => p.Product).WithMany().Map(m => m.MapKey("PROD_ID_PRODUCT"));
+            modelBuilder.Entity<Review>().HasOptional(p => p.PublicationStatus).WithMany().Map(m => m.MapKey("PBST_ID_PUBLICATION_STATUS"));
+
+            modelBuilder.Entity<DraftReview>().Property(p => p.ID).HasColumnName("DREV_ID_REVIEW");
+            modelBuilder.Entity<DraftReview>().HasRequired(p => p.OriginReview).WithMany().Map(m => m.MapKey("REVI_ID_REVIEW"));
+            modelBuilder.Entity<DraftReview>().HasOptional(p => p.Product).WithMany().Map(m => m.MapKey("PROD_ID_PRODUCT"));
+            modelBuilder.Entity<DraftReview>().HasOptional(p => p.PublicationStatus).WithMany().Map(m => m.MapKey("PBST_ID_PUBLICATION_STATUS"));
 
             //Parameter
             modelBuilder.Entity<Parameter>().Property(p => p.ID).HasColumnName("PARA_ID_PARAMETER");
 
             //Table
             modelBuilder.Entity<Table>().Property(t => t.ID).HasColumnName("TABL_ID_TABLE");
-            modelBuilder.Entity<Table>().HasRequired(t => t.PublicationStatus).WithMany().Map(m => m.MapKey("PBST_ID_PUBLICATION_STATUS"));
+            modelBuilder.Entity<Table>().HasOptional(t => t.PublicationStatus).WithMany().Map(m => m.MapKey("PBST_ID_PUBLICATION_STATUS"));
 
             modelBuilder.Entity<DraftTable>().Property(t => t.ID).HasColumnName("DRTA_ID_DRAFT_TABLE");
-            /*modelBuilder.Entity<DraftTable>().HasRequired(t => t.PublicationStatus).WithMany().Map(m => m.MapKey("PBST_ID_PUBLICATION_STATUS"));
-            modelBuilder.Entity<DraftTable>().HasOptional(t => t.OriginalTable).WithMany().Map(m => m.MapKey("ID_TABL"));*/
+            modelBuilder.Entity<DraftTable>().HasOptional(t => t.OriginalTable).WithMany().Map(m => m.MapKey("TABL_ID_TABLE"));
+            modelBuilder.Entity<DraftTable>().HasOptional(t => t.PublicationStatus).WithMany().Map(m => m.MapKey("PBST_ID_PUBLICATION_STATUS"));
+
+            //SupllierAddress
+            modelBuilder.Entity<SupllierAddress>().Property(s => s.ID).HasColumnName("SUAD_ID_SUPLIER_ADDRESS");
+            modelBuilder.Entity<SupllierAddress>().HasOptional(s => s.Supplier).WithMany().Map(m => m.MapKey("SUPL_ID_SUPLIER"));
 
         }
     }

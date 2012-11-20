@@ -18,12 +18,10 @@ namespace auRant.Core.Entities
         [Column("PROD_ID_PRODUCT")]
         public virtual Product Product { get; set; }
 
-        [Column("DRAF_TX_REVIEW")]
+        [Column("DREV_TX_REVIEW")]
         public string ReviewText { get; set; }
 
-        [Column("REVI_ID_REVIEW")]
         public virtual Review OriginReview { get; set; }
-
 
 
 

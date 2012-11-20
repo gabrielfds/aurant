@@ -13,7 +13,7 @@ namespace auRant.Core.Entities
         /// the suplier's id
         /// </summary>
         [Column("SUPL_ID_SUPLIER")]
-        public virtual Suplier Suplier { get; set; }
+        public virtual Supplier Supplier { get; set; }
 
         /// <summary>
         /// telephone's area code

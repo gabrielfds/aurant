@@ -5,7 +5,7 @@
     Layout = "~/Areas/Administration/Views/Shared/_Layout.cshtml";
     WebGrid grid = new WebGrid(
         source: Model,
-        columnNames: new string[] { "Name", "CategoryName", "StatusName", "Price", "UrlImage", "Manufactor" },
+        columnNames: new string[] { "Name", "CategoryName", "StatusName", "Price", "UrlImage", "Supplier" },
         rowsPerPage: 2, canPage: true);
 }
 
@@ -29,7 +29,7 @@
                 grid.Column("CategoryName", "CategoryName", canSort: true),
                 grid.Column("StatusName", "StatusName", canSort: true),
                 grid.Column("Price", "Price", canSort: true),
-                grid.Column("Manufactor", "Manufactor", canSort: true),
+                grid.Column("Supplier", "Supplier", canSort: true),
                 grid.Column("Imagem", header: "Imagem",format: @<text>@imgSrc(item) </text>, canSort: false),
                                                             grid.Column("Editar", header: "Editar", format: (item) => Html.ActionLink("Edit", "Edit", new { id = item.ID, isDraft = item.isDraft }), canSort: false),
                     grid.Column("Publish",header: "Publish",format:@<text>@publish(item)</text>,canSort:false)))

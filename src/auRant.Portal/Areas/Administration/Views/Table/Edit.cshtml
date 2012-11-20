@@ -35,6 +35,7 @@
                 @Html.LabelFor(model => model.IsDraft)
                 <input type="checkbox" checked="@Model.IsDraft"  disabled="disabled" />
                 <input type="hidden" name="IsDraft" id="IsDraft" value="@Model.IsDraft" />
+                <input type="hidden" name="ID" id="ID" value="@Model.ID" />
             </div>
             <p>
                 <input type="submit" value="Save" />

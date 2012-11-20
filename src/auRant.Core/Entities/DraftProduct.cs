@@ -17,18 +17,6 @@ namespace auRant.Core.Entities
         public string Name { get; set; }
 
         /// <summary>
-        /// The product category
-        /// </summary>
-        [Column("PRCA_ID_CATEGORY")]
-        public virtual ProductCategory Category { get; set; }
-       
-        /// <summary>
-        /// The product this draft was made from
-        /// </summary>
-        [Column("PROD_ID_PRODUCT")]
-        public virtual Product OriginalProduct { get; set; }
-
-        /// <summary>
         /// The product price
         /// </summary>
         [Column("DPRO_PRICE")]
@@ -42,11 +30,7 @@ namespace auRant.Core.Entities
         public string urlImage { get; set; }
 
 
-        [Column("SUPL_ID_SUPLIER")]
-        /// <summary>
-        /// The suplier's id that owns this product
-        /// </summary>
-        public virtual Suplier Suplier { get; set; }
+      
 
         /// <summary>
         /// The product short description
@@ -61,6 +45,24 @@ namespace auRant.Core.Entities
         public string FullDescription { get; set; }
 
 
+        /// <summary>
+        /// The product category
+        /// </summary>
+        [Column("PRCA_ID_CATEGORY")]
+        public virtual ProductCategory Category { get; set; }
+
+        /// <summary>
+        /// The product this draft was made from
+        /// </summary>
+        [Column("PROD_ID_PRODUCT")]
+        public virtual Product OriginalProduct { get; set; }
+
+        [Column("SUPL_ID_SUPLIER")]
+        /// <summary>
+        /// The suplier's id that owns this product
+        /// </summary>
+        public virtual Supplier Supplier { get; set; }
+
 
         public void Publish(BasePublishableEntity draft, PublicationStatus status, Base.BaseEntity originalEntity = null)
         {
@@ -70,7 +72,7 @@ namespace auRant.Core.Entities
                 {
                      Category = this.Category,
                       FullDescription = this.FullDescription,
-                        Manufactor = this.Suplier,
+                        Supplier = this.Supplier,
                         Name = this.Name, 
                          Price = this.Price,
                           ShortDescription = this.ShortDescription,
@@ -82,7 +84,7 @@ namespace auRant.Core.Entities
             {
                 Product original = (Product)originalEntity;
                 original.PublicationStatus = new Entities.PublicationStatus();
-                original.Manufactor = this.Suplier;
+                original.Supplier = this.Supplier;
                 original.FullDescription = this.FullDescription;
                 original.Category = this.Category;
                 original.Name = this.Name;

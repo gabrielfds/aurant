@@ -58,7 +58,7 @@ namespace auRant.Visual.Models
         }
 
 
-        internal DraftTable UpdateDraftFromModel(DraftTable draft)
+        public DraftTable UpdateDraftFromModel(DraftTable draft)
         {
             draft.Name = this.Name;
             draft.TableNumber = this.TableNumber;

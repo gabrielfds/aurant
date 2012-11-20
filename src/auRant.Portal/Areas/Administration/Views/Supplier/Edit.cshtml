@@ -1,4 +1,4 @@
-﻿@model auRant.Visual.Areas.Administration.Models.ManufactorModel
+﻿@model auRant.Visual.Areas.Administration.Models.SupplierModel
 
 @{
     ViewBag.Title = "Edit";
@@ -13,7 +13,7 @@
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
     <fieldset>
-        <legend>ManufactorModel</legend>
+        <legend>SupplierModel</legend>
 
         @Html.HiddenFor(model => model.ID)
 

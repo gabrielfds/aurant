@@ -13,8 +13,7 @@ namespace auRant.Core.Entities
         public Review()
         {
 
-        }
-        [Column("PROD_ID_PRODUCT")]
+        }        
         public virtual Product Product { get; set; }
 
         [Column("REVI_TX_REVIEW")]

@@ -67,12 +67,12 @@
   <ItemGroup>
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Administration\Controllers\ManufactorController.cs" />
     <Compile Include="Areas\Administration\Controllers\ProductAdminController.cs" />
     <Compile Include="Areas\Administration\Controllers\ReviewController.cs" />
+    <Compile Include="Areas\Administration\Controllers\SupplierController.cs" />
     <Compile Include="Areas\Administration\Controllers\TableController.cs" />
     <Compile Include="Models\BaseModel.cs" />
-    <Compile Include="Areas\Administration\Models\ManufactorModel.cs" />
+    <Compile Include="Areas\Administration\Models\SupplierModel.cs" />
     <Compile Include="Models\TableModel.cs" />
     <Compile Include="Areas\Product\Controllers\ProductController.cs" />
     <Compile Include="Areas\Product\Models\Product.cs" />
@@ -206,15 +206,6 @@
     <Content Include="Areas\Administration\Views\ProductAdmin\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Administration\Views\Manufactor\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Administration\Views\Manufactor\Create.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Administration\Views\Manufactor\Edit.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Carrossel\CarrosselTopo.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -232,6 +223,15 @@
   <ItemGroup>
     <Content Include="Views\Carrossel\CarrosselMiddle.cshtml" />
   </ItemGroup>
+   <ItemGroup>
+    <Content Include="Areas\Administration\Views\Supplier\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Administration\Views\Supplier\Create.cshtml" />
+  </ItemGroup>  
+  <ItemGroup>
+    <Content Include="Areas\Administration\Views\Supplier\Index.cshtml" />
+  </ItemGroup>  
   <ItemGroup>
     <Content Include="Areas\Product\Views\Product\Index.cshtml" />
   </ItemGroup>

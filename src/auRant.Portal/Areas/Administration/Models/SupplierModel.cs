@@ -8,34 +8,34 @@ using auRant.Core;
 
 namespace auRant.Visual.Areas.Administration.Models
 {
-    public class ManufactorModel
+    public class SupplierModel
     {
-        public ManufactorModel()
+        public SupplierModel()
         {
 
         }
 
         /// <summary>
-        /// The manufactor's ID
+        /// The supplier's ID
         /// </summary>
         public int ID { get; set; }
 
         /// <summary>
-        /// The manufactor's name
+        /// The supplier's name
         /// </summary>
         [Required(ErrorMessage = Constants.REQUIRED_FIELD)]
         public string Name { get; set; }
 
 
-        public ManufactorModel(Suplier manufactor)
+        public SupplierModel(Supplier supplier)
         {
-            this.ID = manufactor.ID;
-            this.Name = manufactor.Name;
+            this.ID = supplier.ID;
+            this.Name = supplier.Name;
         }
 
-        public Suplier CreateManufactorFromModel()
+        public Supplier CreatesupplierFromModel()
         {
-            return new Suplier(){
+            return new Supplier(){
                 Name = this.Name
             };
         }
